@@ -1,5 +1,6 @@
 const fs = require("fs");
 const util = require("util");
+const uuidv1 = require("uuid/v1");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 const readFileAsync = util.promisify(fs.readFile);
@@ -16,9 +17,19 @@ class Store {
             return jsonNotes;
             })
     }
-    // write(){
-    //     return writeFileAsync("db/db.json", newNote);
-    // }
+    write(newNote){
+        console.log("write notes");
+        return writeFileAsync("db/db.json", JSON.stringify(newNote));
+    }
+    addNote(note){
+        const { title, text } = note;
+        const newNote = { title, text};
+        return this.getNotes().then(results => {
+            [...results, newNote]
+        }).then(notesToWrite => {
+            this.write(notesToWrite)
+        }).then(() => newNote)
+    }
 }
 
 module.exports = new Store();

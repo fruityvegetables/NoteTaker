@@ -14,5 +14,13 @@ module.exports = function(app) {
           res.json(notes);
       })
     });
+
+    app.post("/api/notes", function(req, res) {
+        //console.log(req.body);
+        store.addNote(req.body)
+        .then(notes => {
+            res.json(notes);
+        })
+      });
     
 }
