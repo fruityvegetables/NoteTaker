@@ -6,11 +6,14 @@ const readFileAsync = util.promisify(fs.readFile);
 
 class Store {
     read(){
+        console.log("read");
         return readFileAsync("db/db.json", "utf8");
     }
     getNotes(){
+        console.log("get notes");
         return this.read().then(results => {
-            return results;
+            const jsonNotes = [].concat(JSON.parse(results));
+            return jsonNotes;
             })
     }
     // write(){
@@ -18,5 +21,5 @@ class Store {
     // }
 }
 
-module.export = new Store();
+module.exports = new Store();
 

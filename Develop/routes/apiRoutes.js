@@ -1,6 +1,6 @@
-const store = require("../db/store");
-
 module.exports = function(app) {
+
+    const store = require("../db/store");
     // API GET Requests
     // Below code handles when users "visit" a page.
     // In each of the below cases when a user visits a link
@@ -8,7 +8,11 @@ module.exports = function(app) {
     // ---------------------------------------------------------------------------
   
     app.get("/api/notes", function(req, res) {
-      res.json(newNote);
+      console.log("something");
+      store.getNotes()
+      .then(notes => {
+          res.json(notes);
+      })
     });
     
 }
