@@ -17,6 +17,7 @@ var getNotes = function() {
 
 // A function for saving a note to the db
 var saveNote = function(note) {
+  // console.log("anything");
   return $.ajax({
     url: "/api/notes",
     data: note,
@@ -106,7 +107,7 @@ var handleRenderSaveBtn = function() {
 // Render's the list of note titles
 var renderNoteList = function(notes) {
   $noteList.empty();
-
+  //console.log(notes);
   var noteListItems = [];
 
   for (var i = 0; i < notes.length; i++) {
