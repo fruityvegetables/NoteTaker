@@ -24,7 +24,7 @@ class Store {
     addNote(note){
         const { title, text } = note;
         const newNote = { title, text };
-        return this.getNotes().then(results =>
+        return this.getNotes().then(results => 
             [...results, newNote]
         ).then(notesToWrite => {
             this.write(notesToWrite)
