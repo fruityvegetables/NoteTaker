@@ -31,9 +31,9 @@ module.exports = function (app) {
     res.send(await writeFileAsync("db/db.json", JSON.stringify(noteArray)))
   });
 
-  app.delete("/api/notes", async function (req, res) {
+  app.delete("/api/notes/:id", async function (req, res) {
     var noteId = req.params;
-    //console.log(noteId);
+    console.log(noteId);
     var getNotes = JSON.parse(await readFileAsync("db/db.json", "utf8"));
     var noteArray = [];
     for (i=0; i < getNotes.length; i++) {
